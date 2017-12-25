@@ -1691,10 +1691,13 @@ Readability.prototype = {
    *  3. Grab the article content from the current dom tree.
    *  4. Replace the current DOM tree with the new one.
    *  5. Read peacefully.
-   *
+   * @param Node - Optional node object for using it not in browser
    * @return void
    **/
-  parse: function () {
+  parse: function (Node) {
+    if(Node){
+      global.Node = Node;
+    }
     // Avoid parsing too large documents, as per configuration option
     if (this._maxElemsToParse > 0) {
       var numTags = this._doc.getElementsByTagName("*").length;
